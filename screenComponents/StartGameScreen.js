@@ -32,13 +32,24 @@ const StartGameScreen = props => {
     }
     setNumberConfirmed(true);
     setEnteredValue('');
-    setSelectedNumber(chosenNumber)
+    setSelectedNumber(chosenNumber);
+    Keyboard.dismiss()
   };
 
   let confirmedOutput;
 
   if (numberConfirmed) {
-    confirmedOutput = <View><Text>Number selected: {selectedNumber}</Text></View>
+    confirmedOutput = (
+      <Card style={styles.confirmedOutputContainer}>
+        <Text style={styles.confirmedOutputText}>Number selected</Text>
+        <View style={styles.confirmedOutputNumber}>
+          <Text style={styles.confirmedOutputNumberText}>{selectedNumber}</Text>
+        </View>
+        <View style={styles.confirmedOutputButton}>
+          <Button title='START!' color={Colors.primary}/>
+        </View>
+      </Card>
+    )
     }
 
   return (
@@ -106,6 +117,35 @@ const styles = StyleSheet.create({
   input: {
     width: 50,
     textAlign: 'center'
+  },
+  confirmedOutputContainer: {
+    marginVertical: 35,
+    padding: 30,
+    alignItems: 'center'
+
+  },
+  confirmedOutputText: {
+    fontSize: 18,
+    color: Colors.primary
+  },
+  confirmedOutputNumber: {
+    borderColor: Colors.secondary,
+    borderWidth: 2,
+    borderRadius: 10,
+    marginVertical: 20,
+    backgroundColor: 'white',
+    // alignItems: 'center',
+    // justifyContent: 'center',
+
+  },
+  confirmedOutputNumberText: {
+    padding: 10,
+    fontSize: 24,
+    color: Colors.secondary
+  },
+  confirmedOutputButton: {
+    minWidth: 150,
+    maxWidth: '70%'
   }
 });
 
